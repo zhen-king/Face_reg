@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+<script type="text/javascript" src="https://dashboard.luxand.cloud/face-login.js"></script>   
+<script>
+verify_face('999d9349932f24266a0dc47f4567bd63')
+
+function face_login(face_token){
+    xhr = new XMLHttpRequest();
+
+    // replace this URL with your back-end authentication script 
+    xhr.open('POST', '/login.php');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+
+        	// here is the code for successfull authentication
+        	alert(xhr.responseText)
+        } else if (xhr.status !== 200) {
+
+        	// here is the code if the authentication failed
+        	alert("User authentication failed")
+        }
+    };
+    xhr.send(encodeURI('face_token=' + face_token));
+}
+</script>
+</body>
+</html>
